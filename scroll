@@ -1,0 +1,71 @@
+<div id="trigger1"></div>
+  <div id="pin1">
+    <div id="imagesequence">
+        <img id="myimg" style="height:100%; position:fixed; top:0px;" /><br>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.0/TweenMax.min.js"></script>
+<script>
+var controller = new ScrollMagic.Controller();
+
+// define images
+var images = ["https://cache-ssl.celtra.com/api/blobs/41176f146a47c3602f42ad82c0a54576ca2f374bb0b7234ee8566194c8350d27/Main_00000.png",
+"https://cache-ssl.celtra.com/api/blobs/6a12eabe94812728e7105ec16ed2be940f6cec3a61958feb3ff302e37d71690b/Main_00001.png",
+"https://cache-ssl.celtra.com/api/blobs/2b13032b2b7dbb6cc1b7fd05f9d201b85d5f10cb0c3d929286f5c7a1f9c6b77b/Main_00002.png",
+"https://cache-ssl.celtra.com/api/blobs/647a65d1deda1b02322b578cc6d2e0953f7f0e5b5cd9b9ec71d607c792b040f2/Main_00003.png",
+"https://cache-ssl.celtra.com/api/blobs/f4df107397ab4646a5951b73f6a443f2a4a26c15a33c1eefdf247ef3f3e5019b/Main_00005.png",
+"https://cache-ssl.celtra.com/api/blobs/8bc74e3297ebe207d957789ae2c154a24130a622770a582ffd64ad70ac2b3199/Main_00006.png",
+"https://cache-ssl.celtra.com/api/blobs/8bc74e3297ebe207d957789ae2c154a24130a622770a582ffd64ad70ac2b3199/Main_00006.png",
+"https://cache-ssl.celtra.com/api/blobs/724cceb9364c0aef0816797e84acae8de4320b413bdf95d5a4925109d12cd8c2/Main_00007.png",
+"https://cache-ssl.celtra.com/api/blobs/943ad08699d72b5b599898b1e69e3bc7bb1f520be1a61ab0f9f45367a26962fb/Main_00008.png",
+"https://cache-ssl.celtra.com/api/blobs/241b6ef455a01987b2f47baef41254a63d18c6f3d86bd20145145446b21dd6d3/Main_00009.png",
+"https://cache-ssl.celtra.com/api/blobs/c489edb01fdceb18e9a94d4c1feea874332540847e9a6e79f227f860c7ae82d5/Main_00010.png",
+"https://cache-ssl.celtra.com/api/blobs/4252bdeec7f410ef2a30a3c28fc73df580652ecedb60c8b94ef41f0e9083fe4d/Main_00011.png",
+"https://cache-ssl.celtra.com/api/blobs/04b7b6116633035beae17ad9641bdfa281e63360989c743c0c4f7f878ae0be8a/Main_00012.png",
+"https://cache-ssl.celtra.com/api/blobs/39d3fd799ce3b0029e7e286c8b535eba1b582d5dac63542006f16d0ecd369936/Main_00013.png",
+"https://cache-ssl.celtra.com/api/blobs/3c6093ff310778eb2b9a768d6926e3c724b9150f3650c6e63b1f563176b2f119/Main_00014.png",
+"https://cache-ssl.celtra.com/api/blobs/ec7a4eec1f8f9348e66289f20e42ff9339f0f498a410611c99e70761cf185cf8/Main_00015.png",
+"https://cache-ssl.celtra.com/api/blobs/5123d462a24d155a7490e3180367f28c2d01f2014aee4ca9d0e77843b1e3664a/Main_00016.png",
+"https://cache-ssl.celtra.com/api/blobs/4d022a9c649932cf0d62844ef1a6dbb9e921c13eb0be18c06d69aac9c3ec16b9/Main_00017.png",
+"https://cache-ssl.celtra.com/api/blobs/30b487868f7d00eaca53ad17d1026188fda169b638a7fc8925a8821ceeb29549/Main_00018.png",
+"https://cache-ssl.celtra.com/api/blobs/b00ed1c9cc0c2a7ff08137522635860e484a5c25d322cbc58d8d6df77c50f463/Main_00019.png",
+"https://cache-ssl.celtra.com/api/blobs/04e75a0e3086a5723ffdac551e2c0cbd8e17597b17a436036fb434a566a7387e/Main_00020.png",
+"https://cache-ssl.celtra.com/api/blobs/f91aedb1bf8e3e025c1c7edc7f26dbe099833d5924ab3a923a7f82334b6e69bb/Main_00021.png",
+"https://cache-ssl.celtra.com/api/blobs/62c7c6bd209363b7fbcd6585b9097dc90026004ff4bb6507928e173ecfcb59f8/Main_00022.png",
+"https://cache-ssl.celtra.com/api/blobs/bcbf3955152dd94274f010ab95f50fa1bc190ed5a054713d6e968abbc28196f9/Main_00023.png",];
+
+
+ var obj = {curImg: 0};
+
+// create tween
+var tween = TweenMax.to(obj, 0.5,
+    {
+     curImg: images.length - 1,
+     roundProps: "curImg",             
+     repeat: 0,                                 
+     immediateRender: true,          
+     ease: Linear.easeNone,
+repeat: 5, 
+yoyo: true,          
+     onUpdate: function () {
+     $("#myimg").attr("src", images[obj.curImg]); 
+                            }
+     }
+ );
+
+// init controller
+var controller = new ScrollMagic.Controller();
+
+// build scene
+var scene0 = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: "100%"})
+                    .setPin("#pin1")
+                    .setTween(tween)
+                    .addTo(controller);
+
+                    var triggerHook = scene0.triggerHook();
+                    scene0.triggerHook(0);
+</script>
